@@ -1,0 +1,44 @@
+<%page expression_filter="h"/>\
+<%def name="table()"><table>${caller.body()}</table></%def>\
+<%def name="th()"><th>${caller.body()}</th></%def>\
+<%def name="td()"><td>${caller.body()}</td></%def>\
+<%self:table>
+  <thead>
+  <tr>
+    <%self:th>Repo</%self:th>
+% for config_name, config_url in configs:
+    <%self:th>
+      <a href="${config_url}">${config_name}</a>
+    </%self:th>
+% endfor
+  </tr>
+  </thead>
+  <tbody>
+% for entry_name, entry in entries.items():
+  <tr>
+    <%self:th>${entry_name}</%self:th>
+%   for config_name, config_url in configs:
+%   if config_name in entry:
+<%  cell = entry[config_name]  %>\
+    <%self:td>
+%       if cell.uri.has_pic:
+        <img src="${base_url}${cell.uri.pic_uri}" alt="repo icon" width="24" style="vertical-align: middle" />
+%       else:
+        <span style="width:24px"></span>
+%       endif
+        <a href="${cell.uri.src_uri(cell.version)}">
+%         if cell.version:
+          <span style="margin-left: 3px">${cell.version}</span>
+%         else:
+          <span style="margin-left: 3px; padding: 2px 5px; background: #990505; color: white; border-radius: 5px">unspecified</span>
+%         endif
+        </a>
+    </%self:td>
+%   else:
+    <%self:td></%self:td>
+%   endif
+%   endfor
+  </tr>
+% endfor
+  </tbody>
+</%self:table>

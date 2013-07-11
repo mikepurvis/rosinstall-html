@@ -1,0 +1,4 @@
+<%inherit file="table.htmlf"/>\
+<%def name="table()"><table class="confluenceTable">${caller.body()}</table></%def>\
+<%def name="th()"><th class="confluenceTh">${caller.body()}</th></%def>\
+<%def name="td()"><td class="confluenceTd">${caller.body()}</td></%def>\
