@@ -1,4 +1,5 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+
 from flask import Flask, request, url_for
 from render import do_render
 import argparse

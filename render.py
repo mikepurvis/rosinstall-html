@@ -1,14 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
-try:
-  import requests, yaml, re, argparse
-  from mako.template import Template
-  from mako.lookup import TemplateLookup
-  from collections import OrderedDict
-  from os import path
-except ImportError:
-  print "Please install dependencies:"
-  print "sudo pip install requests mako pyyaml"
+import requests, yaml, re, argparse
+from mako.template import Template
+from mako.lookup import TemplateLookup
+from collections import OrderedDict
+from os import path
 
 TMPL_DIR = path.join(path.dirname(path.realpath(__file__)), "tmpl")
 lookup = TemplateLookup(directories=[TMPL_DIR])
