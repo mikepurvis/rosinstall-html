@@ -24,7 +24,7 @@
 %       if cell.uri.has_pic:
         <img src="${base_url}${cell.uri.pic_uri}" alt="repo icon" width="24" style="vertical-align: middle" />
 %       else:
-        <span style="width:24px"></span>
+        <span style="width:24px;display:inline-block;"></span>
 %       endif
         <a href="${cell.uri.src_uri(cell.version)}">
 %         if cell.version:

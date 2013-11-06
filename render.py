@@ -21,18 +21,19 @@ class RepoUri(object):
     if not match:
       raise ValueError()
     self.groups = match.groups
+    self.uri = uri
   def src_uri(self, version): return self.uri
   def repo_uri(self): return self.uri 
 
 class GithubUri(RepoUri):
-  re = re.compile("(.*)(github\.com)(.*)\.git")
+  re = re.compile("(.*)(github\.com)(.*)(\.git)?")
   has_pic = True
   pic_uri = "static/github.png"
   def src_uri(self, version):
     if version:
-      return "".join(self.groups()) + "/tree/%s" % version
+      return "".join(self.groups()[0:3]) + "/tree/%s" % version
     else:
-      return "".join(self.groups())
+      return "".join(self.groups()[0:3])
 
 class BitbucketUri(RepoUri):
   re = re.compile("(.*)(bitbucket\.org)(.*)\.git")
